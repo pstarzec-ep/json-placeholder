@@ -16,10 +16,12 @@ export class CommentsResolver implements Resolve<Comment[]> {
   constructor(private commentService: CommentService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Comment[]> {
-    const postId = route.paramMap.get('postId');
+    const postId = route.paramMap.get('postId') || route.parent.paramMap.get('postId');
+
     if (!postId) {
       return of([]);
     }
+
     return this.commentService.getCommentsForPost(+postId);
   }
 }

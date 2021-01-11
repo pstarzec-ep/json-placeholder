@@ -1,18 +1,18 @@
+<h2>Post</h2>
 <mat-card *ngIf="post$ | async; let post">
   <mat-card-header>
     <mat-card-title>{{post.title}}</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
-    <h2>Post</h2>
     <p>{{post.body}}</p>
-
-    <h3>Comments</h3>
-    <mat-list>
-      <mat-list-item *ngFor="let comment of comments$ | async">
-        <div mat-line class="comment-title">{{comment.name}}<span class="spacer"></span>by {{comment.email}}</div>
-        <div mat-line>{{comment.body}}</div>
-      </mat-list-item>
-    </mat-list>
   </mat-card-content>
+
+  <mat-card-actions align="end">
+    <a mat-button [routerLink]="['comments']">View comments</a>
+  </mat-card-actions>
 </mat-card>
+
+<br>
+
+<router-outlet></router-outlet>

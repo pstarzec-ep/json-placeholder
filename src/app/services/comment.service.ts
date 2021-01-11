@@ -18,4 +18,10 @@ export class CommentService {
       map(response => response.map(comment => new Comment(comment))),
     );
   }
+
+  public getCommentsById(commentId: number): Observable<Comment> {
+    return this.http.get<IComment>(`${environment.api}/comments/${commentId}`).pipe(
+      map(response => new Comment(response)),
+    );
+  }
 }
