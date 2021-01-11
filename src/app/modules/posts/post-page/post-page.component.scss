@@ -1,0 +1,12 @@
+:host {
+  display: block;
+  padding: 2rem;
+
+  mat-card-content {
+    text-align: justify;
+  }
+}
+
+.comment-title {
+  display: flex !important;
+}
