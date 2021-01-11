@@ -13,10 +13,8 @@ import { map } from 'rxjs/operators';
 export class CommentsComponent {
 
   public comments$: Observable<Comment[]>;
-  public commentId$: Observable<number>;
 
   constructor(private route: ActivatedRoute) {
     this.comments$ = this.route.data.pipe(map(data => data.comments));
-    this.commentId$ = this.route.params.pipe(map(params => +params.commentId));
   }
 }

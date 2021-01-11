@@ -6,6 +6,8 @@ import { PostResolver } from './post.resolver';
 import { PostsPageComponent } from './posts-page/posts-page.component';
 import { PostsResolver } from './posts.resolver';
 import { CommentsComponent } from './comments/comments.component';
+import { CommentDetailsComponent } from './comment-details/comment-details.component';
+import { CommentResolver } from './comment.resolver';
 
 const routes: Routes = [
   { path: '', component: PostsPageComponent, resolve: { posts: PostsResolver } },
@@ -13,6 +15,7 @@ const routes: Routes = [
     path: ':postId', component: PostPageComponent, resolve: { post: PostResolver },
     children: [
       { path: 'comments', component: CommentsComponent, resolve: { comments: CommentsResolver } },
+      { path: 'comment/:commentId', component: CommentDetailsComponent, resolve: { comment: CommentResolver } },
     ],
   },
 ];

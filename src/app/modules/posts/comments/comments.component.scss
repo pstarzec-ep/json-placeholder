@@ -1,3 +1,12 @@
-.comment-title {
-  display: flex !important;
+:host {
+  mat-card {
+    margin-bottom: 1rem;
+  }
+}
+
+.image {
+  img {
+    display: block;
+    margin: 0 auto;
+  }
 }
