@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Comment } from '@app/models';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+import { FromCommentDetailsState } from './+state';
 
 @Component({
   selector: 'jp-comment-details',
@@ -14,7 +14,7 @@ export class CommentDetailsComponent {
 
   public comment$: Observable<Comment>;
 
-  constructor(private route: ActivatedRoute) {
-    this.comment$ = this.route.data.pipe(map(data => data.comment));
+  constructor(private store: Store<any>) {
+    this.comment$ = this.store.select(FromCommentDetailsState.selectComment);
   }
 }
