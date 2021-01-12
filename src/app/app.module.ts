@@ -19,10 +19,10 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({ }, {}),
-    // StoreRouterConnectingModule.forRoot(),
+    StoreModule.forRoot({}, {}),
+    StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument(),
-    // EffectsModule.forRoot(),
+    EffectsModule.forRoot(),
     BrowserAnimationsModule,
     HttpClientModule,
     MatButtonModule,

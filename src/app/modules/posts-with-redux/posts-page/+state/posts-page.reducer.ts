@@ -13,6 +13,6 @@ export function postsPageReducer(state, action): IPostsPageState {
 const reducer = createReducer(
   init,
   on(loadPostsAction),
-  on(postsLoadedAction),
+  on(postsLoadedAction, (state, { posts }) => ({ ...state, ...{ posts } })),
   on(postsLoadFailAction),
 );
