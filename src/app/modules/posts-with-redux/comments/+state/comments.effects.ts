@@ -9,8 +9,7 @@ import { loadCommentsAction, commentsLoadedAction, commentsLoadFailAction } from
 @Injectable()
 export class CommentsEffects {
 
-  resolveComments$ = createEffect(() => {
-    return this.actions$.pipe(
+  resolveComments$ = createEffect(() => this.actions$.pipe(
       ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
       map((action) => action.payload),
       filter(payload => !!payload.event.url.match(/^\/posts-with-redux\/\d*\/comments$/)),
@@ -18,17 +17,14 @@ export class CommentsEffects {
         const segment = payload.event.url.replace(/\/posts-with-redux\//, '').match(/\d*/);
         return loadCommentsAction({ postId: +segment[0] });
       }),
-    );
-  });
+    ));
 
   loadComments$ = createEffect(() => this.actions$.pipe(
     ofType(loadCommentsAction),
-    switchMap(action => {
-      return this.commentService.getCommentsForPost(action.postId).pipe(
+    switchMap(action => this.commentService.getCommentsForPost(action.postId).pipe(
         map(comments => commentsLoadedAction({ comments })),
         catchError(() => of(commentsLoadFailAction())),
-      );
-    }),
+      )),
   ));
 
   constructor(private actions$: Actions,

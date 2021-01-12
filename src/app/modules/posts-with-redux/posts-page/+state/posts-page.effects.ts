@@ -9,23 +9,19 @@ import { loadPostsAction, postsLoadedAction, postsLoadFailAction } from './posts
 @Injectable()
 export class PostsPageEffects {
 
-  resolvePosts$ = createEffect(() => {
-    return this.actions$.pipe(
+  resolvePosts$ = createEffect(() => this.actions$.pipe(
       ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
       map((action) => action.payload),
       filter(payload => !!payload.event.url.match(/^\/posts-with-redux$/)),
       map(() => loadPostsAction()),
-    );
-  });
+    ));
 
   loadPosts$ = createEffect(() => this.actions$.pipe(
     ofType(loadPostsAction),
-    switchMap(action => {
-      return this.postService.getPosts().pipe(
+    switchMap(action => this.postService.getPosts().pipe(
         map(posts => postsLoadedAction({ posts })),
         catchError(() => of(postsLoadFailAction())),
-      );
-    }),
+      )),
   ));
 
   constructor(private actions$: Actions,

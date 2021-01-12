@@ -11,8 +11,7 @@ import { FromPostPageState } from './post-page.selector';
 @Injectable()
 export class PostPageEffects {
 
-  resolvePost$ = createEffect(() => {
-    return this.actions$.pipe(
+  resolvePost$ = createEffect(() => this.actions$.pipe(
       ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
       map((action) => action.payload),
       filter(payload => !!payload.event.url.match(/^\/posts-with-redux\/\d*/)),
@@ -25,17 +24,14 @@ export class PostPageEffects {
         }
         return { type: 'NOPE_ACTION' };
       }),
-    );
-  });
+    ));
 
   loadPost$ = createEffect(() => this.actions$.pipe(
     ofType(loadPostAction),
-    switchMap(action => {
-      return this.postService.getPostById(action.postId).pipe(
+    switchMap(action => this.postService.getPostById(action.postId).pipe(
         map(post => postLoadedAction({ post })),
         catchError(() => of(postLoadFailAction())),
-      );
-    }),
+      )),
   ));
 
   constructor(private actions$: Actions<PostActions>,
