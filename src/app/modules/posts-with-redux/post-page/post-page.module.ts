@@ -13,10 +13,10 @@ import { RouterModule } from '@angular/router';
   declarations: [PostPageComponent],
   imports: [
     CommonModule,
-    StoreModule.forFeature(POST_PAGE_STATE, postReducer),
-    EffectsModule.forFeature([
-      PostEffects,
-    ]),
+    // StoreModule.forFeature(POST_PAGE_STATE, postReducer),
+    // EffectsModule.forFeature([
+    //   PostEffects,
+    // ]),
     RouterModule,
     MatCardModule,
     MatButtonModule,

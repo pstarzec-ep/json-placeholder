@@ -33,7 +33,7 @@ const init = {
 
 const reducer = createReducer(
   init,
-  on(PostsActions.load, (state) => ({ ...state, loading: true })),
+  on(PostsActions.load, (state, action) => ({ ...state, loading: true })),
   on(PostsActions.loaded, (state, { posts }) => ({ ...state, loading: false, posts })),
   on(PostsActions.loadFail, (state) => ({ ...state, loading: false, posts: [] })),
 );

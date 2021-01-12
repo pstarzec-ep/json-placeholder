@@ -12,10 +12,10 @@ import { MatButtonModule } from '@angular/material/button';
   declarations: [CommentsComponent],
   imports: [
     CommonModule,
-    StoreModule.forFeature(COMMENTS_STATE, commentsReducer),
-    EffectsModule.forFeature([
-      CommentsEffects,
-    ]),
+    // StoreModule.forFeature(COMMENTS_STATE, commentsReducer),
+    // EffectsModule.forFeature([
+    //   CommentsEffects,
+    // ]),
     MatCardModule,
     RouterModule,
     MatButtonModule,
