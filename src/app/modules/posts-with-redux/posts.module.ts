@@ -12,7 +12,9 @@ import { CommentsComponent } from './comments/comments.component';
 import { CommentDetailsComponent } from './comment-details/comment-details.component';
 import { POSTS_PAGE_STATE, postsReducer, PostsEffects } from './posts-page/+state';
 import { EffectsModule } from '@ngrx/effects';
-import { PostsDataResolver } from './+state';
+import { PostsDataResolverEffects } from './+state';
+import { PostEffects, postReducer, POST_PAGE_STATE } from './post-page/+state';
+import { COMMENTS_STATE, CommentsEffects, commentsReducer } from './comments/+state';
 
 @NgModule({
   declarations: [
@@ -23,8 +25,15 @@ import { PostsDataResolver } from './+state';
   ],
   imports: [
     CommonModule,
-    StoreModule.forFeature(POSTS_PAGE_STATE, postsReducer),
-    EffectsModule.forFeature([PostsDataResolver, PostsEffects]),
+    StoreModule.forFeature(POSTS_PAGE_STATE, postsReducer), // TODO separate module
+    StoreModule.forFeature(POST_PAGE_STATE, postReducer), // TODO separate module
+    StoreModule.forFeature(COMMENTS_STATE, commentsReducer), // TODO separate module
+    EffectsModule.forFeature([
+      PostsDataResolverEffects,
+      PostsEffects, // TODO separate module
+      PostEffects, // TODO separate module
+      CommentsEffects, // TODO separate module
+    ]),
     PostsRoutingModule,
     MatListModule,
     MatCardModule,

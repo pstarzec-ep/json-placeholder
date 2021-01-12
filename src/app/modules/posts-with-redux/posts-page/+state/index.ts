@@ -6,21 +6,21 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-export const POSTS_PAGE_STATE = 'post-page';
+export const POSTS_PAGE_STATE = 'posts-page';
 
-export enum PostActionTypes {
+export enum PostsActionTypes {
   Load = '[Posts] Load',
   Loaded = '[Posts] Loaded',
   LoadFail = '[Posts] Load Fail',
 }
 
-export class PostActions {
-  public static load = createAction(PostActionTypes.Load);
-  public static loaded = createAction(PostActionTypes.Loaded, props<{ posts: Post[] }>());
-  public static loadFail = createAction(PostActionTypes.LoadFail);
+export class PostsActions {
+  public static load = createAction(PostsActionTypes.Load);
+  public static loaded = createAction(PostsActionTypes.Loaded, props<{ posts: Post[] }>());
+  public static loadFail = createAction(PostsActionTypes.LoadFail);
 }
 
-export interface PostState {
+export interface PostsState {
   loading: boolean;
   posts: Post[];
 }
@@ -32,12 +32,12 @@ const init = {
 
 const reducer = createReducer(
   init,
-  on(PostActions.load, (state) => ({ ...state, loading: true })),
-  on(PostActions.loaded, (state, { posts }) => ({ ...state, loading: false, posts })),
-  on(PostActions.loadFail, (state) => ({ ...state, loading: false, posts: [] })),
+  on(PostsActions.load, (state) => ({ ...state, loading: true })),
+  on(PostsActions.loaded, (state, { posts }) => ({ ...state, loading: false, posts })),
+  on(PostsActions.loadFail, (state) => ({ ...state, loading: false, posts: [] })),
 );
 
-export function postsReducer(state, action): PostState {
+export function postsReducer(state, action): PostsState {
   return reducer(action, action);
 }
 
@@ -59,11 +59,11 @@ export class FromPostsState {
 export class PostsEffects {
 
   loadPosts$ = createEffect(() => this.actions$.pipe(
-    ofType(PostActionTypes.Load),
+    ofType(PostsActionTypes.Load),
     switchMap(() => {
       return this.postService.getPosts().pipe(
-        map(posts => PostActions.loaded({ posts })),
-        catchError(() => of(PostActions.loadFail())),
+        map(posts => PostsActions.loaded({ posts })),
+        catchError(() => of(PostsActions.loadFail())),
       );
     }),
   ));
