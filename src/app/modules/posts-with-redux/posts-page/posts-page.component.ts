@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Post } from '@app/models';
 import { Store } from '@ngrx/store';
-import { FromPostPageState } from '@app/modules/posts-with-redux/posts-page/+state';
+import { FromPostsPageState } from '@app/modules/posts-with-redux/posts-page/+state';
 
 @Component({
   selector: 'jp-page',
@@ -17,6 +17,6 @@ export class PostsPageComponent {
   public posts$: Observable<Post[]>;
 
   constructor(private store: Store<any>) {
-    this.posts$ = this.store.select(FromPostPageState.selectPosts);
+    this.posts$ = this.store.select(FromPostsPageState.selectPost);
   }
 }

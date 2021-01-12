@@ -12,7 +12,7 @@ export function postPageReducer(state, action): IPostPageState {
 
 const reducer = createReducer(
   init,
-  on(loadPostAction),
+  on(loadPostAction, (state) => ({ ...state, ...{ post: null } })),
   on(postLoadedAction, (state, { post }) => ({ ...state, ...{ post } })),
   on(postLoadFailAction),
 );
