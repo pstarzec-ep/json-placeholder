@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Comment, Post } from '@app/models';
+import { Post } from '@app/models';
+import { Store } from '@ngrx/store';
+import { FromPostPageState } from './+state';
 
 @Component({
   selector: 'jp-post-page',
@@ -13,11 +13,9 @@ import { Comment, Post } from '@app/models';
 export class PostPageComponent {
 
   public post$: Observable<Post>;
-  public comments$: Observable<Comment[]>;
 
-  constructor(private route: ActivatedRoute) {
-    this.post$ = this.route.data.pipe(map(data => data.post));
-    this.comments$ = this.route.data.pipe(map(data => data.comments));
+  constructor(private store: Store<any>) {
+    this.post$ = this.store.select(FromPostPageState.selectPost);
   }
 
 }
