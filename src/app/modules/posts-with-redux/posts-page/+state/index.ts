@@ -3,8 +3,9 @@ import { Post } from '@app/models';
 import { Injectable } from '@angular/core';
 import { PostService } from '@app/services';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
 
 export const POSTS_PAGE_STATE = 'posts-page';
 
@@ -57,6 +58,12 @@ export class FromPostsState {
 
 @Injectable()
 export class PostsEffects {
+
+  // postsResolver$ = createEffect(() => this.actions$.pipe(
+  //   ofType(ROUTER_NAVIGATED),
+  //   filter((action: RouterNavigatedAction) => action.payload.event.url === '/posts-with-redux'),
+  //   map(() => PostsActions.load()),
+  // ));
 
   loadPosts$ = createEffect(() => this.actions$.pipe(
     ofType(PostsActionTypes.Load),

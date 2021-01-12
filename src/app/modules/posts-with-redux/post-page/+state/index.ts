@@ -3,8 +3,10 @@ import { Post } from '@app/models';
 import { Injectable } from '@angular/core';
 import { PostService } from '@app/services';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, filter, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ROUTER_NAVIGATED, RouterNavigatedAction } from '@ngrx/router-store';
+import { ActivatedRouteSnapshot } from '@angular/router';
 
 export const POST_PAGE_STATE = 'post-page';
 
@@ -58,16 +60,33 @@ export class FromPostState {
 @Injectable()
 export class PostEffects {
 
-  loadPost$ = createEffect(() => this.actions$.pipe(
-    ofType(PostActionTypes.Load),
-    switchMap((action: any) => {
-      return this.postService.getPostById(action.postId).pipe(
-        map(post => PostActions.loaded({ post })),
-        catchError(() => of(PostActions.loadFail())),
-      );
-    }),
-  ));
+  // postResolver$ = createEffect(() => this.actions$.pipe(
+  //   ofType(ROUTER_NAVIGATED),
+  //   filter((action: RouterNavigatedAction) => !!action.payload.event.url.match(/\/posts-with-redux\/\d*/)),
+  //   map((action: RouterNavigatedAction) => {
+  //     const postId = +this.findParam(action.payload.routerState.root, 'postId');
+  //     return PostActions.load({ postId });
+  //   }),
+  // ));
+  //
+  // loadPost$ = createEffect(() => this.actions$.pipe(
+  //   ofType(PostActionTypes.Load),
+  //   switchMap((action: any) => {
+  //     return this.postService.getPostById(action.postId).pipe(
+  //       map(post => PostActions.loaded({ post })),
+  //       catchError(() => of(PostActions.loadFail())),
+  //     );
+  //   }),
+  // ));
 
   constructor(private actions$: Actions,
               private postService: PostService) {}
+
+  private findParam(snapshot: ActivatedRouteSnapshot, param: string): string {
+    const foundParam = snapshot.params?.[param];
+    if (!foundParam) {
+      return this.findParam(snapshot.firstChild, param);
+    }
+    return foundParam;
+  }
 }
