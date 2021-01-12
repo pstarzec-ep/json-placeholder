@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CommentsResolver } from './comments.resolver';
-import { PostPageComponent } from './post-page/post-page.component';
 import { PostResolver } from './post.resolver';
-import { PostsPageComponent } from './posts-page/posts-page.component';
 import { PostsResolver } from './posts.resolver';
-import { CommentsComponent } from './comments/comments.component';
-import { CommentDetailsComponent } from './comment-details/comment-details.component';
 import { CommentResolver } from './comment.resolver';
+import { PostsPageComponent, PostsPageModule } from './posts-page';
+import { PostPageComponent, PostPageModule } from './post-page';
+import { CommentsComponent, CommentsModule } from './comments';
+import { CommentDetailsComponent } from '@app/modules/posts-with-router/comment-details';
 
 const routes: Routes = [
   { path: '', component: PostsPageComponent, resolve: { posts: PostsResolver } },
@@ -21,7 +21,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes),
+    PostsPageModule,
+    PostPageModule,
+    CommentsModule,
+  ],
   exports: [RouterModule],
 })
 export class PostsRoutingModule {}
