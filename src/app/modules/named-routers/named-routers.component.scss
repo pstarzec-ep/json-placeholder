@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+
+.recursive-container {
+  margin: 0 1rem;
+
+  display: flex;
+
+  .container {
+    flex-grow: 1;
+  }
+}
+
+.odd {
+  border: 1px solid red;
+}
+
+.even {
+  border: 1px solid blue;
+}

@@ -1,0 +1,21 @@
+<h1 *ngIf="!(id$ | async)">Recursive children with named routes</h1>
+<h2>Id: {{(id$ | async) || 0}}</h2>
+<h3>The number: {{(theNumber$ | async) || 0}}</h3>
+
+<a mat-button *ngIf="!!(id$ | async)" [routerLink]="['../']">
+  <mat-icon>navigate_before</mat-icon>
+  Back
+</a>
+<a mat-button [routerLink]="[{outlets: {}}]">
+  <mat-icon>navigate_next</mat-icon>
+  Next
+</a>
+
+<div class="recursive-container">
+  <div class="container odd">
+    <router-outlet name="odd"></router-outlet>
+  </div>
+  <div class="container even">
+    <router-outlet name="odd"></router-outlet>
+  </div>
+</div>
