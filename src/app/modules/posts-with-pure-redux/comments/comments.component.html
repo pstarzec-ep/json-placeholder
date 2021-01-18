@@ -1,0 +1,16 @@
+<h3>Comments</h3>
+
+<mat-card *ngFor="let comment of comments$ | async">
+  <mat-card-header>
+    <mat-card-title>A MYSTERY Comment</mat-card-title>
+    <mat-card-subtitle>{{comment.body.substr(0, 30)}}...</mat-card-subtitle>
+  </mat-card-header>
+
+  <div class="image">
+    <img src="assets/mystery.png" width="200px"/>
+  </div>
+
+  <mat-card-actions align="end">
+    <button mat-button (click)="showComment(comment.id)">Details</button>
+  </mat-card-actions>
+</mat-card>

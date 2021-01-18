@@ -1,0 +1,20 @@
+<!-- This is my "router" -->
+<!-- This could be replaced with dynamic component renderer which really is a custom router -->
+
+<ng-container *ngIf="(posts$ | async) && !(post$ | async)">
+  <jp-posts-page></jp-posts-page>
+</ng-container>
+
+<ng-container *ngIf="(post$ | async)">
+  <jp-post-page></jp-post-page>
+</ng-container>
+
+<ng-container *ngIf="(comments$ | async) && !(comment$ | async)">
+  <jp-comments></jp-comments>
+</ng-container>
+
+<ng-container *ngIf="(comment$ | async)">
+  <jp-comment-details></jp-comment-details>
+</ng-container>
+
+

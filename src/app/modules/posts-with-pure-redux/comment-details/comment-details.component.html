@@ -1,0 +1,18 @@
+<h3>Comment #{{(comment$ | async)?.id}}</h3>
+
+<mat-card *ngIf="comment$ | async; let comment">
+  <mat-card-header>
+    <mat-card-title>{{comment.name}}</mat-card-title>
+    <mat-card-subtitle>{{comment.email}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>{{comment.body}}</p>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-button (click)="back()">Back</button>
+  </mat-card-actions>
+
+  <img mat-card-image src="assets/mystery-reveal.png"/>
+</mat-card>

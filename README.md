@@ -33,7 +33,9 @@
   - [Development] Easy to develop as you can stay on current route
 
 - Redux/NGRX only
+  - really need to implement everything: router, backward/forward mechanism, persistent state
 - Hybrid redux/NGRX with routes
+  - better
 - Router only
 
 

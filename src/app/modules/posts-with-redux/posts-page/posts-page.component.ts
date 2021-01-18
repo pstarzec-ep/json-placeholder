@@ -1,10 +1,8 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Post } from '@app/models';
 import { Store } from '@ngrx/store';
-import { FromPostsPageState } from '@app/modules/posts-with-redux/posts-page/+state';
+import { FromPostsPageState } from './+state';
 
 @Component({
   selector: 'jp-page',
