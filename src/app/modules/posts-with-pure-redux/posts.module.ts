@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { PostsRoutingModule } from './posts-routing.module';
-import { PostsComponent } from './posts.component';
+import { PostsRouterComponent } from './posts-router.component';
 import { POSTS_SATE, PostsEffects, postsReducer } from './+state';
 import { PostsPageModule } from './posts-page';
 import { PostPageModule } from './post-page';
@@ -23,6 +23,6 @@ import { CommentDetailsModule } from './comment-details';
     CommentDetailsModule,
     CommentDetailsModule,
   ],
-  declarations: [PostsComponent],
+  declarations: [PostsRouterComponent],
 })
 export class PostsModule {}

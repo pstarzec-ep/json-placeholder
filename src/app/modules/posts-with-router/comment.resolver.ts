@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
-import {
-  Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { CommentService } from '@app/services';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Comment } from '@app/models';
 
 @Injectable({
@@ -16,7 +12,10 @@ export class CommentResolver implements Resolve<Comment> {
   constructor(private commentService: CommentService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Comment> {
-    const commentId = route.paramMap.get('commentId');
-    return this.commentService.getCommentsById(+commentId);
+    const commentId = +route.paramMap.get('commentId');
+    if (!commentId) {
+      return of(null);
+    }
+    return this.commentService.getCommentsById(commentId);
   }
 }

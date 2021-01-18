@@ -6,10 +6,10 @@ import { FromPostsState, loadPostsAction } from './+state';
 
 @Component({
   selector: 'jp-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss'],
+  templateUrl: './posts-router.component.html',
+  styleUrls: ['./posts-router.component.scss'],
 })
-export class PostsComponent implements OnInit {
+export class PostsRouterComponent implements OnInit {
 
   public posts$: Observable<Post[]>;
   public post$: Observable<Post>;

@@ -10,18 +10,18 @@ import { loadPostsAction, postsLoadedAction, postsLoadFailAction } from './posts
 export class PostsPageEffects {
 
   resolvePosts$ = createEffect(() => this.actions$.pipe(
-      ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
-      map((action) => action.payload),
-      filter(payload => !!payload.event.url.match(/^\/posts-with-hybrid$/)),
-      map(() => loadPostsAction()),
-    ));
+    ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
+    map((action) => action.payload),
+    filter(payload => !!payload.event.url.match(/^\/posts-with-hybrid$/)),
+    map(() => loadPostsAction()),
+  ));
 
   loadPosts$ = createEffect(() => this.actions$.pipe(
     ofType(loadPostsAction),
     switchMap(action => this.postService.getPosts().pipe(
-        map(posts => postsLoadedAction({ posts })),
-        catchError(() => of(postsLoadFailAction())),
-      )),
+      map(posts => postsLoadedAction({ posts })),
+      catchError(() => of(postsLoadFailAction())),
+    )),
   ));
 
   constructor(private actions$: Actions,

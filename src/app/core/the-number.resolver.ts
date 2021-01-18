@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  Router, Resolve,
-  RouterStateSnapshot,
-  ActivatedRouteSnapshot,
-} from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 
 const THE_NUMBER = 11;
 
@@ -15,7 +10,7 @@ export class TheNumberResolver implements Resolve<number> {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): number {
     const id = +route.paramMap.get('id');
     const thenumber = id * THE_NUMBER;
-    console.log('TheNumberResolver has been called. Returning value:', thenumber);
+    console.log('TheNumberResolver has been called. Returning value:', thenumber, 'id:', id);
     return thenumber;
   }
 }

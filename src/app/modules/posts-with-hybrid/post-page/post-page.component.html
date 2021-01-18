@@ -1,5 +1,7 @@
 <h2>Post</h2>
 
+<button mat-button [routerLink]="['../']">Back to posts</button>
+
 <mat-card *ngIf="post$ | async; let post">
   <mat-card-header>
     <mat-card-title>{{post.title}}</mat-card-title>
