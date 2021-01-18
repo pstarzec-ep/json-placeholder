@@ -1,0 +1,15 @@
+<h1 *ngIf="!(id$ | async)">Recursive children paths</h1>
+<h2>Id: {{(id$ | async) || 0}}</h2>
+
+<a mat-button *ngIf="!!(id$ | async)" [routerLink]="['../']">
+  <mat-icon>navigate_before</mat-icon>
+  Back
+</a>
+<a mat-button [routerLink]="[(id$ | async) + 1]">
+  <mat-icon>navigate_next</mat-icon>
+  Next
+</a>
+
+<div class="recursive-container">
+  <router-outlet></router-outlet>
+</div>

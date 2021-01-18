@@ -11,3 +11,7 @@
 - Monolith software - think of it as set of small apps
 - NGRX / Redux is a great tool, and even if it got simpler it still is a bit tough to learn and can
   be an overkill
+
+- recursive paths
+- children paths
+
