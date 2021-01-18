@@ -1,5 +1,6 @@
 <h1>Recursive paths</h1>
 <h2>Id: {{(id$ | async) || 0}}</h2>
+<h3>The number: {{(theNumber$ | async) || 0}}</h3>
 
 <a mat-button *ngIf="!!(id$ | async)" [routerLink]="['../']">
   <mat-icon>navigate_before</mat-icon>

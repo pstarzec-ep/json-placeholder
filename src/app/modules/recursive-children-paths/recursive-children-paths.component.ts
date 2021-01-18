@@ -12,8 +12,10 @@ import { map } from 'rxjs/operators';
 export class RecursiveChildrenPathsComponent {
 
   public id$: Observable<number>;
+  public theNumber$: Observable<number>;
 
   constructor(private route: ActivatedRoute) {
     this.id$ = this.route.paramMap.pipe(map(paramsMap => +paramsMap.get('id')));
+    this.theNumber$ = this.route.data.pipe(map(data => data.theNumber));
   }
 }
