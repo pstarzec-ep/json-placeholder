@@ -12,7 +12,7 @@ export class PostsPageEffects {
   resolvePosts$ = createEffect(() => this.actions$.pipe(
       ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
       map((action) => action.payload),
-      filter(payload => !!payload.event.url.match(/^\/posts-with-redux$/)),
+      filter(payload => !!payload.event.url.match(/^\/posts-with-hybrid$/)),
       map(() => loadPostsAction()),
     ));
 

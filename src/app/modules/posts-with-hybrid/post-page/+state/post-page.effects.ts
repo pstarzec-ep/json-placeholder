@@ -14,10 +14,10 @@ export class PostPageEffects {
   resolvePost$ = createEffect(() => this.actions$.pipe(
       ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
       map((action) => action.payload),
-      filter(payload => !!payload.event.url.match(/^\/posts-with-redux\/\d*/)),
+      filter(payload => !!payload.event.url.match(/^\/posts-with-hybrid\/\d*/)),
       withLatestFrom(this.store.select(FromPostPageState.selectPost)),
       map(([payload, post]) => {
-        const segment = payload.event.url.replace(/\/posts-with-redux\//, '').match(/\d*/);
+        const segment = payload.event.url.replace(/\/posts-with-hybrid\//, '').match(/\d*/);
         const postId = +segment[0];
         if (postId !== post?.id) {
           return loadPostAction({ postId });

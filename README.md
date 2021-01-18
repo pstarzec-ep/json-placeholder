@@ -33,10 +33,17 @@
   - [Development] Easy to develop as you can stay on current route
 
 - Redux/NGRX only
-  - really need to implement everything: router, backward/forward mechanism, persistent state
+  - overcomplicated and really need to build semi-framework from scratch
+  - no reload (unless implemented persistence state)
+  - no backward/forward mechanism (unless implemented custom one)
+  - custom router
 - Hybrid redux/NGRX with routes
   - better
+  - too many file to create (all four separate states) // these could be simplified but it would
+    break encapsulation
+  - resolvers replaced with effects on route (with custom route interpretation)
 - Router only
+  - 
 
 
 

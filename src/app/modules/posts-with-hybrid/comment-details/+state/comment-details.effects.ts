@@ -12,9 +12,9 @@ export class CommentDetailsEffects {
   resolveComments$ = createEffect(() => this.actions$.pipe(
       ofType<RouterNavigatedAction>(ROUTER_NAVIGATED),
       map((action) => action.payload),
-      filter(payload => !!payload.event.url.match(/^\/posts-with-redux\/\d*\/comment\//)),
+      filter(payload => !!payload.event.url.match(/^\/posts-with-hybrid\/\d*\/comment\//)),
       map(payload => {
-        const segment = payload.event.url.replace(/^\/posts-with-redux\/\d*\/comment\//, '').match(/\d*/);
+        const segment = payload.event.url.replace(/^\/posts-with-hybrid\/\d*\/comment\//, '').match(/\d*/);
         return loadCommentDetailsAction({ commentId: +segment[0] });
       }),
     ));
