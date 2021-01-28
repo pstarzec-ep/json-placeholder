@@ -45,13 +45,13 @@
   - custom router
 - Hybrid redux/NGRX with routes
   - better
-  - too many file to create (all four separate states) // these could be simplified but it would
+  - too many files to create (all four separate states) // these could be simplified, but it would
     break encapsulation
   - resolvers replaced with effects on route (with custom route interpretation)
   - reload available
   - can be extended with guards (in effects)
 - Router only
-  - most simple and friendly with angular
+  - most simple and angular friendly
   - reload available
   - use resolvers
   - can be easily extended with Angular guards

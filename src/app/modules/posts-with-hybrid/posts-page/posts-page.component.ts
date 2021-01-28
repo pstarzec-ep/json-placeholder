@@ -15,6 +15,6 @@ export class PostsPageComponent {
   public posts$: Observable<Post[]>;
 
   constructor(private store: Store<any>) {
-    this.posts$ = this.store.select(FromPostsPageState.selectPost);
+    this.posts$ = this.store.select(FromPostsPageState.selectPosts);
   }
 }

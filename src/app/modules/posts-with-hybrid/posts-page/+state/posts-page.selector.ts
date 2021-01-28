@@ -4,7 +4,7 @@ import { IPostsPageState, POSTS_PAGE_SATE } from './posts-page.inteface';
 const featureSelector = createFeatureSelector<IPostsPageState>(POSTS_PAGE_SATE);
 
 export class FromPostsPageState {
-  public static selectPost = createSelector(
+  public static selectPosts = createSelector(
     featureSelector,
     state => state.posts,
   );
